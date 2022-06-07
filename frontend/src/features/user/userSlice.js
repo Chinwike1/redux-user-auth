@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { bar: 'Swagger Terrific' }
+const initialState = {
+  loading: false,
+  userInfo: [],
+  userToken: null,
+  error: null,
+}
 
 const userSlice = createSlice({
   name: 'user',
@@ -8,7 +13,5 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: {},
 })
-
-// export const {  } = userSlice.actions
 
 export default userSlice.reducer

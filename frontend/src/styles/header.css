@@ -1,0 +1,28 @@
+.header-status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: #eee;
+  color: black;
+}
+
+.cta {
+  margin-left: auto;
+}
+
+.navigation {
+  text-align: center;
+}
+
+.navigation a {
+  margin: 1rem 0 0 1.2rem;
+  color: rgb(58, 58, 58);
+  text-decoration: none;
+}
+
+.navigation .active {
+  text-decoration: underline;
+}
