@@ -1,0 +1,26 @@
+figure {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  font-size: 3.5rem;
+  color: white;
+  background: rgb(22, 184, 243);
+    background: linear-gradient(149deg, rgba(22, 184, 243, 1) 0%, rgba(108, 231, 185, 1) 65%);
+  border-radius: 50%;
+  margin: 2rem auto;
+}
+
+figure span {
+  text-align: center;
+}
+
+div.unauthorized {
+  text-align: center;
+}
+
+div.unauthorized h1 {
+  margin: 1.5rem 0; 
+}
