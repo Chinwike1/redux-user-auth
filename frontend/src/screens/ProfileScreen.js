@@ -1,15 +1,26 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import '../styles/profile.css'
 
 const ProfileScreen = () => {
-  const [firstName] = useState('John')
+  const { userInfo } = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
+
+  // redirect unauthenticated user to login screen
+  useEffect(() => {
+    if (userInfo === null) {
+      navigate('/')
+    }
+  }, [userInfo, navigate])
 
   return (
-    <div className='unauthorized'>
-      <figure>{firstName.charAt(0).toUpperCase()}</figure>
+    <div>
+      <figure>{userInfo?.firstName.charAt(0).toUpperCase()}</figure>
       <span>
-        Welcome <strong>{firstName}!</strong> You can view this page because
-        you're logged in
+        Welcome <strong>{userInfo?.firstName}!</strong> You can view this page
+        because you're logged in
       </span>
     </div>
   )
