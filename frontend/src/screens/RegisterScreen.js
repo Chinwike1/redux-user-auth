@@ -8,6 +8,8 @@ const RegisterScreen = () => {
       alert('Password mismatch')
       return
     }
+    // transform email string to lowercase to avoid case sensitivity issues during login
+    data.email = data.email.toLowerCase()
     console.log(data)
   }
 
