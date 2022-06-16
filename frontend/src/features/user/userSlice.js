@@ -61,7 +61,6 @@ const userSlice = createSlice({
     [getUserDetails.fulfilled]: (state, { payload }) => {
       state.loading = false
       state.userInfo = payload
-      state.userToken = payload.userToken
     },
     [getUserDetails.rejected]: (state, { payload }) => {
       state.loading = false

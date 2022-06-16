@@ -42,13 +42,12 @@ export const registerUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       }
-      const { data } = await axios.post(
+
+      await axios.post(
         '/api/user/register',
         { firstName, email, password },
         config
       )
-
-      return data
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message)
