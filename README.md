@@ -10,7 +10,7 @@ Authentication workflow built with the MERN stack & Redux Toolkit. [Project demo
 
 ## Usage
 ### Starter files
-If you're following along with the [LogRocket tutorial](https://google.com), clone the `starter-files` branch with the following command:
+Clone the `starter-files` branch with the following command:
 
 ```bash
 git clone --branch starter-files --single-branch https://github.com/Chinwike1/redux-user-auth.git
@@ -52,12 +52,3 @@ Backend & Frontend
 
 ## License
 GPL-3.0 — Open source license. Software can be used, copied, modified, e.t.c, free of charge.
-
-
-
-<!-- add availabe scripts, list all features, include display GIF -->
-<!-- 
-  Features
-  - esmodules instead of commonjs
-
- -->
