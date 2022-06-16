@@ -1,5 +1,5 @@
 # User Authentication with Redux Toolkit
-Authentication workflow built with the MERN stack & Redux Toolkit. [Project demo here](https://google.com)
+Authentication workflow built with the MERN stack & Redux Toolkit. [Project demo here](https://redux-user-auth.herokuapp.com/)
 
 ## Features
 * User Login & Register
