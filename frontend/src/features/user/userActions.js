@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
+const backendURL = process.env.REACT_APP_BACKEND_URL
+
 export const userLogin = createAsyncThunk(
-  'user/login',
+  `${backendURL}/user/login`,
   async ({ email, password }, { rejectWithValue }) => {
     try {
       // configure header's Content-Type as JSON
@@ -13,7 +15,7 @@ export const userLogin = createAsyncThunk(
       }
 
       const { data } = await axios.post(
-        '/api/user/login',
+        `${backendURL}/api/user/login`,
         { email, password },
         config
       )
@@ -34,7 +36,7 @@ export const userLogin = createAsyncThunk(
 )
 
 export const registerUser = createAsyncThunk(
-  'user/register',
+  `${backendURL}/user/register`,
   async ({ firstName, email, password }, { rejectWithValue }) => {
     try {
       const config = {
@@ -44,7 +46,7 @@ export const registerUser = createAsyncThunk(
       }
 
       await axios.post(
-        '/api/user/register',
+        `${backendURL}/api/user/register`,
         { firstName, email, password },
         config
       )
@@ -59,7 +61,7 @@ export const registerUser = createAsyncThunk(
 )
 
 export const getUserDetails = createAsyncThunk(
-  'user/getUserDetails',
+  `${backendURL}/user/getUserDetails`,
   async (arg, { getState, rejectWithValue }) => {
     try {
       // get user data from store
@@ -72,7 +74,7 @@ export const getUserDetails = createAsyncThunk(
         },
       }
 
-      const { data } = await axios.get(`/api/user/profile`, config)
+      const { data } = await axios.get(`${backendURL}/api/user/profile`, config)
       return data
     } catch (error) {
       if (error.response && error.response.data.message) {
