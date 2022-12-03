@@ -6,7 +6,9 @@ import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 
-dotenv.config()
+// deployment configuration
+const __dirname = path.resolve()
+dotenv.config({ path: '../.env' })
 
 // connect to database
 connectDB()
@@ -18,9 +20,6 @@ app.use(express.json())
 
 // API routes
 app.use('/api/user', userRoutes)
-
-// deployment configuration
-const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/frontend/build')))
