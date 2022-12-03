@@ -6,11 +6,18 @@ import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 
-// deployment configuration
 const __dirname = path.resolve()
-dotenv.config({ path: '../.env' })
 
-// connect to database
+// Deployment configuration
+//configure env file in dev mode
+dotenv.config()
+
+// configure env file in production
+if (process.env.NODE_ENV === undefined) {
+  dotenv.config({ path: '../.env' })
+}
+
+// Connect to database
 connectDB()
 
 const app = express()
