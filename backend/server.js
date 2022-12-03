@@ -1,4 +1,5 @@
 import path from 'path'
+import cors from 'cors'
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
@@ -24,6 +25,15 @@ const app = express()
 
 // Body parser
 app.use(express.json())
+
+// CORS
+app.use(
+  cors({
+    origin: 'https://redux-user-auth.netlify.app/',
+    methods: ['GET', 'PUT', 'POST'],
+    credentials: true,
+  })
+)
 
 // API routes
 app.use('/api/user', userRoutes)
