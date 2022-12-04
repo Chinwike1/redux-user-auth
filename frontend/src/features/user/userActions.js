@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
+import getBackendURL from '../../utils/getBackendURL'
 
-const backendURL = process.env.REACT_APP_BACKEND_URL
+const backendURL = getBackendURL()
 
 export const userLogin = createAsyncThunk(
   `${backendURL}/user/login`,
