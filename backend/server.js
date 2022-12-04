@@ -29,7 +29,7 @@ app.use(express.json())
 // CORS
 app.use(
   cors({
-    origin: '*',
+    origin: ['https://redux-user-auth.netlify.app/'],
   })
 )
 
