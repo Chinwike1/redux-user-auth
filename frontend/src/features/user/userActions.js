@@ -4,6 +4,8 @@ import getBackendURL from '../../utils/getBackendURL'
 
 const backendURL = getBackendURL()
 
+console.log(backendURL)
+
 export const userLogin = createAsyncThunk(
   `${backendURL}/user/login`,
   async ({ email, password }, { rejectWithValue }) => {
