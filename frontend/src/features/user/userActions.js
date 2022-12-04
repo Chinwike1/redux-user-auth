@@ -1,10 +1,7 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import getBackendURL from '../../utils/getBackendURL'
 
-const backendURL = getBackendURL()
-
-console.log(backendURL)
+const backendURL = 'https://redux-user-auth.up.railway.app'
 
 export const userLogin = createAsyncThunk(
   `${backendURL}/user/login`,
