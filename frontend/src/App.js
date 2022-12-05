@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 import Header from './components/Header'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
@@ -19,6 +24,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path='/user-profile' element={<ProfileScreen />} />
           </Route>
+          <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
       </main>
     </Router>
