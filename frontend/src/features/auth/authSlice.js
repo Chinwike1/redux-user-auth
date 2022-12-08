@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUserDetails, registerUser, userLogin } from './userActions'
+import { registerUser, userLogin } from './authActions'
 
 // initialize userToken from local storage
 const userToken = localStorage.getItem('userToken')
@@ -14,7 +14,7 @@ const initialState = {
   success: false,
 }
 
-const userSlice = createSlice({
+const authSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -24,6 +24,9 @@ const userSlice = createSlice({
       state.userInfo = null
       state.userToken = null
       state.error = null
+    },
+    setCredentials: (state, { payload }) => {
+      state.userInfo = payload
     },
   },
   extraReducers: {
@@ -54,20 +57,9 @@ const userSlice = createSlice({
       state.loading = false
       state.error = payload
     },
-    // get user details
-    [getUserDetails.pending]: (state) => {
-      state.loading = true
-    },
-    [getUserDetails.fulfilled]: (state, { payload }) => {
-      state.loading = false
-      state.userInfo = payload
-    },
-    [getUserDetails.rejected]: (state, { payload }) => {
-      state.loading = false
-    },
   },
 })
 
-export const { logout } = userSlice.actions
+export const { logout, setCredentials } = authSlice.actions
 
-export default userSlice.reducer
+export default authSlice.reducer

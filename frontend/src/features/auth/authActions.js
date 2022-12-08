@@ -2,9 +2,10 @@ import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const backendURL = 'https://redux-user-auth.up.railway.app'
+// const backendURL = 'http://127.0.0.1:5000'
 
 export const userLogin = createAsyncThunk(
-  `${backendURL}/user/login`,
+  'user/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       // configure header's Content-Type as JSON
@@ -36,7 +37,7 @@ export const userLogin = createAsyncThunk(
 )
 
 export const registerUser = createAsyncThunk(
-  `${backendURL}/user/register`,
+  'user/register',
   async ({ firstName, email, password }, { rejectWithValue }) => {
     try {
       const config = {
@@ -50,32 +51,6 @@ export const registerUser = createAsyncThunk(
         { firstName, email, password },
         config
       )
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
-      } else {
-        return rejectWithValue(error.message)
-      }
-    }
-  }
-)
-
-export const getUserDetails = createAsyncThunk(
-  `${backendURL}/user/getUserDetails`,
-  async (arg, { getState, rejectWithValue }) => {
-    try {
-      // get user data from store
-      const { user } = getState()
-
-      // configure authorization header with user's token
-      const config = {
-        headers: {
-          Authorization: `Bearer ${user.userToken}`,
-        },
-      }
-
-      const { data } = await axios.get(`${backendURL}/api/user/profile`, config)
-      return data
     } catch (error) {
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message)
