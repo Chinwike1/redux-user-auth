@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Error from '../components/Error'
-import { registerUser } from '../features/user/userActions'
+import Spinner from '../components/Spinner'
+import { registerUser } from '../features/auth/authActions'
 
 const RegisterScreen = () => {
   const [customError, setCustomError] = useState(null)
@@ -76,7 +77,7 @@ const RegisterScreen = () => {
         />
       </div>
       <button type='submit' className='button' disabled={loading}>
-        Register
+        {loading ? <Spinner /> : 'Register'}
       </button>
     </form>
   )

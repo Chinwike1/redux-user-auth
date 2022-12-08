@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../features/user/userActions'
+import { userLogin } from '../features/auth/authActions'
 import { useEffect } from 'react'
 import Error from '../components/Error'
+import Spinner from '../components/Spinner'
 
 const LoginScreen = () => {
   const { loading, userInfo, error } = useSelector((state) => state.user)
@@ -46,7 +47,7 @@ const LoginScreen = () => {
         />
       </div>
       <button type='submit' className='button' disabled={loading}>
-        Login
+        {loading ? <Spinner /> : 'Login'}
       </button>
     </form>
   )
