@@ -10,7 +10,7 @@ const RegisterScreen = () => {
   const [customError, setCustomError] = useState(null)
 
   const { loading, userInfo, error, success } = useSelector(
-    (state) => state.user
+    (state) => state.auth
   )
   const dispatch = useDispatch()
 

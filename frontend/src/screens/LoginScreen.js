@@ -7,7 +7,7 @@ import Error from '../components/Error'
 import Spinner from '../components/Spinner'
 
 const LoginScreen = () => {
-  const { loading, userInfo, error } = useSelector((state) => state.user)
+  const { loading, userInfo, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   const { register, handleSubmit } = useForm()
