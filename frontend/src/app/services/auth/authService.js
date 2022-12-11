@@ -4,9 +4,9 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://redux-user-auth.up.railway.app/',
-    // baseUrl: 'http://127.0.0.1:5000/api/user',
+    // baseUrl: 'http://127.0.0.1:5000/',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().user.userToken
+      const token = getState().auth.userToken
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
         return headers
