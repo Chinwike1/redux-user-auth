@@ -1,10 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+const baseUrl =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://127.0.0.1:5000/'
+    : process.env.REACT_APP_SERVER_URL
+
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://redux-user-auth.up.railway.app/',
-    // baseUrl: 'http://127.0.0.1:5000/',
+    baseUrl,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.userToken
       if (token) {
@@ -14,7 +18,7 @@ export const authApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getDetails: build.query({
+    getUserDetails: build.query({
       query: () => ({
         url: 'api/user/profile',
         method: 'GET',
@@ -24,4 +28,4 @@ export const authApi = createApi({
 })
 
 // export react hook
-export const { useGetDetailsQuery } = authApi
+export const { useGetUserDetailsQuery } = authApi
