@@ -1,11 +1,13 @@
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
-const backendURL = 'https://redux-user-auth.up.railway.app'
-// const backendURL = 'http://127.0.0.1:5000'
+const backendURL =
+  process.env.NODE_ENV !== 'production'
+    ? 'http://127.0.0.1:5000'
+    : process.env.REACT_APP_SERVER_URL
 
 export const userLogin = createAsyncThunk(
-  'user/login',
+  'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       // configure header's Content-Type as JSON
@@ -37,7 +39,7 @@ export const userLogin = createAsyncThunk(
 )
 
 export const registerUser = createAsyncThunk(
-  'user/register',
+  'auth/register',
   async ({ firstName, email, password }, { rejectWithValue }) => {
     try {
       const config = {
