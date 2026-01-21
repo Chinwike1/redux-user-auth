@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: ${MONGO_URI}
+      JWT_SECRET: ${JWT_SECRET}
+    user: '1000:1000' # run as non-root user
+    ports:
+      - '5000:5000'
+    volumes:
+      - ../files/logs:/app/logs
+    restart: unless-stopped

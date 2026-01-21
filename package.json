@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "type": "module",
   "description": "User Authentication workflow made with the MERN stack",
-  "main": "index.js",
+  "main": "./backend/server.js",
   "scripts": {
+    "install:all": "pnpm install && pnpm -C backend install && pnpm -C frontend install",
+    "build": "pnpm -C frontend run build",
     "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "dev": "concurrently \"pnpm run dev:server\" \"pnpm run dev:client\"",
+    "dev:server": "nodemon backend/server",
+    "dev:client": "pnpm -C frontend run dev"
   },
   "repository": {
     "type": "git",

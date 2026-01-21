@@ -36,23 +36,44 @@ Environment variables are shown in `.env.example` files.
 
 ## Install Dependencies
 
-Run this command to install dependencies in both the backend & frontend folders:
+Run this command to install dependencies in root, backend & frontend:
 
-```
-  npm install && cd frontend && npm install
+```bash
+pnpm run install:all
 ```
 
 ## Start development server
 
 ```bash
-  # Run frontend (:5173) & backend (:5000)
-  npm run dev
+# Run frontend (:5173) & backend (:5000)
+pnpm run dev
 
-  # Run backend only
-  npm run server
+# Run backend only
+pnpm run dev:server
 
-  # Run frontend only
-  npm run client
+# Run frontend only
+pnpm run dev:client
+```
+
+## Build
+
+```bash
+# Build frontend
+pnpm run build
+```
+
+## Production
+
+```bash
+# Start the production server (serves built frontend)
+pnpm start
+```
+
+## Docker
+
+```bash
+# Build and run with docker compose
+docker compose up --build
 ```
 
 ## Roadmap

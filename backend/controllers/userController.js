@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
+import logger from '../config/logger.js'
 
 const registerUser = asyncHandler(async (req, res) => {
   const { firstName, email, password } = req.body
@@ -17,6 +18,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({ firstName, email, password })
 
   if (user) {
+    logger.info(`${email} registered at ${new Date().toISOString()}`)
     res.status(201).json({
       _id: user._id,
       firstName: user.firstName,
@@ -36,6 +38,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // return user obj if their password matches
   if (user && (await user.matchPassword(password))) {
+    logger.info(`${email} signed in at ${new Date().toISOString()}`)
     res.json({
       _id: user._id,
       firstName: user.firstName,

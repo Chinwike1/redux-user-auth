@@ -1,5 +1,6 @@
 // database connection file to MongoDB
 import { mongoose } from 'mongoose'
+import logger from './logger.js'
 
 const connectDB = async () => {
   try {
@@ -7,9 +8,9 @@ const connectDB = async () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
-    console.log(`mongodb connected: ${conn.connection.host}`.cyan.underline)
+    logger.info(`MongoDB connected: ${conn.connection.host.toString().substring(0, 6)}...mongodb.net`)
   } catch (error) {
-    console.log(`Error: ${error.message}`.underline.bold)
+    logger.error(`Error: ${error.message}`)
     process.exit(1)
   }
 }
