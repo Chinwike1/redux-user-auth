@@ -2,7 +2,10 @@ version: '3.9'
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        VITE_SERVER_URL: ${VITE_SERVER_URL}
     environment:
       NODE_ENV: production
       PORT: 5000

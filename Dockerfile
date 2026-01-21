@@ -13,6 +13,8 @@ COPY frontend/ frontend/
 RUN pnpm run install:all
 
 ENV NODE_ENV=production
+ARG VITE_SERVER_URL
+ENV VITE_SERVER_URL=$VITE_SERVER_URL
 RUN pnpm run build
 
 EXPOSE 5000
