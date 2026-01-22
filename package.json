@@ -6,7 +6,7 @@
   "main": "./backend/server.ts",
   "scripts": {
     "install:all": "pnpm install && pnpm -C backend install && pnpm -C frontend install",
-    "build": "pnpm run install:all && pnpm run build:backend && pnpm run build:frontend",
+    "build": "pnpm run build:backend && pnpm run build:frontend",
     "build:backend": "pnpm -C backend run build",
     "build:frontend": "pnpm -C frontend run build",
     "start": "cd backend && npx tsx server.ts",
@@ -41,7 +41,7 @@
     "mongoose": "^6.3.5"
   },
   "engines": {
-    "node": "18.x"
+    "node": ">=20"
   },
   "packageManager": "pnpm@8.15.0"
 }
