@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -6,17 +10,66 @@
   padding: 0;
 }
 
+:root {
+  /* Light theme (default) */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #e2e8f0;
+  --bg-tertiary: #cbd5e1;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --input-bg: #ffffff;
+  --input-border: #cbd5e1;
+  --accent-blue: #16b8f3;
+  --accent-hover: #12a8df;
+}
+
+.dark {
+  /* Dark theme */
+  --bg-primary: #0a1628;
+  --bg-secondary: #1a2744;
+  --bg-tertiary: #2a3a5c;
+  --text-primary: #f8fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --input-bg: #1e2d47;
+  --input-border: #3a4a6c;
+}
+
+/* Smooth theme transition */
+*,
+*::before,
+*::after {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
 body {
-  font-family: "Karla", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family:
+    'Karla',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 html {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .container {
@@ -27,20 +80,20 @@ html {
 }
 
 .content {
-  /* border: 1px solid black; */
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
 }
 
 .content h1,
-.content form { 
-  padding-top: 2rem; 
+.content form {
+  padding-top: 2rem;
 }
 
 .content h1 {
   text-align: center;
   justify-self: center;
+  color: var(--text-primary);
 }
 
 /* button styles */
@@ -48,15 +101,15 @@ html {
   position: relative;
   text-decoration: none;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #16b8f3;
+  padding: 0.875rem 1.5rem;
+  background-color: var(--accent-blue);
   color: white;
-  border-radius: 5px;
-  transition: 0.3s background-color ease-out;
+  border-radius: 8px;
+  font-weight: 500;
 }
 
 .button:hover {
-  background-color: #12a8df;
+  background-color: var(--accent-hover);
 }
 
 button.button {
@@ -74,42 +127,100 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.form-group label {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .form-input {
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.875rem 1rem;
   margin-bottom: 1rem;
-  border-radius: 5px;
-  border: none;
-  border: 1px solid #999999;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.dark .form-input {
+  color: #ffffff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(22, 184, 243, 0.2);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
 }
 
 form button {
   width: 100%;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+/* Form title styling */
+.form-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* unauthorized screen */
+.unauthorized {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.unauthorized h1 {
+  margin-bottom: 1rem;
+}
+
+.unauthorized a {
+  color: var(--accent-blue);
 }
 
 /* responsive styles */
-/* md */
+/* mobile - give form more room */
 @media screen and (max-width: 768px) {
   form {
-    max-width: 80%;
+    width: 90%;
+    max-width: 90%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .form-input {
+    width: 100%;
+  }
+  
+  form button {
+    width: 100%;
   }
 }
 
 /* lg */
- @media screen and (min-width: 769px) and (max-width: 1170px) {
-   form {
-     max-width: 75%;
-   }
- }
+@media screen and (min-width: 769px) and (max-width: 1170px) {
+  form {
+    max-width: 75%;
+  }
+}
 
 /* xl */
- @media screen and (min-width: 1171px) {
+@media screen and (min-width: 1171px) {
   form {
     max-width: 55%;
   }
- }
-
-
-
+}

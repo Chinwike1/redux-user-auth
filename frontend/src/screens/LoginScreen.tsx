@@ -1,0 +1,57 @@
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { userLogin } from '../features/auth/authActions'
+import { useEffect } from 'react'
+import Error from '../components/Error'
+import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import type { LoginCredentials } from '../types'
+
+const LoginScreen = () => {
+  const { loading, userInfo, error } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
+
+  const { register, handleSubmit } = useForm<LoginCredentials>()
+
+  const navigate = useNavigate()
+
+  // redirect authenticated user to profile screen
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/user-profile')
+    }
+  }, [navigate, userInfo])
+
+  const submitForm: SubmitHandler<LoginCredentials> = (data) => {
+    dispatch(userLogin(data))
+  }
+
+  return (
+    <form onSubmit={handleSubmit(submitForm)}>
+      {error && <Error>{error}</Error>}
+      <div className='form-group'>
+        <label htmlFor='email'>Email</label>
+        <input
+          type='email'
+          className='form-input'
+          {...register('email')}
+          required
+        />
+      </div>
+      <div className='form-group'>
+        <label htmlFor='password'>Password</label>
+        <input
+          type='password'
+          className='form-input'
+          {...register('password')}
+          required
+        />
+      </div>
+      <button type='submit' className='button' disabled={loading}>
+        {loading ? <Spinner /> : 'Login'}
+      </button>
+    </form>
+  )
+}
+
+export default LoginScreen
