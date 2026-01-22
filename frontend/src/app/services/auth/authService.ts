@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { RootState } from '../../store'
 import type { User } from '../../../types'
 
-const baseUrl = import.meta.env.DEV ? 'http://127.0.0.1:5000/' : import.meta.env.VITE_SERVER_URL as string
+const baseUrl = 'http://localhost:5000/'
 
 export const authApi = createApi({
   reducerPath: 'authApi',

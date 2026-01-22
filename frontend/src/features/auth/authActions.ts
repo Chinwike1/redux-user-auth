@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import type { User, LoginCredentials, RegisterCredentials } from '../../types'
 
-const backendURL = import.meta.env.DEV ? 'http://127.0.0.1:5000/' : import.meta.env.VITE_SERVER_URL as string
+const backendURL = 'http://localhost:5000/'
 
 interface ApiErrorResponse {
   message: string
