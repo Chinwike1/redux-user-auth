@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import type { User, LoginCredentials, RegisterCredentials } from '../../types'
 
-const backendURL = 'http://localhost:5000/'
+const backendURL = '/'
 
 interface ApiErrorResponse {
   message: string
