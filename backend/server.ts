@@ -54,6 +54,6 @@ app.use(notFound)
 app.use(errorHandler)
 
 const PORT = parseInt(process.env.PORT || '5000', 10)
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
   logger.info(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 })
