@@ -4,3 +4,5 @@ frontend/node_modules
 .env
 .git
 logs/
+dist/
+frontend/build/

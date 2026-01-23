@@ -12,6 +12,7 @@ node_modules/
 
 # production
 /frontend/build
+/dist
 
 # misc
 .env

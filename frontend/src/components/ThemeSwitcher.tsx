@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react'
 
 const ThemeSwitcher = () => {
   const [isDark, setIsDark] = useState(() => {
-    // Check localStorage or system preference
+    // Check the DOM class first (set by inline script in index.html),
+    // then fall back to localStorage or system preference
+    if (typeof document !== 'undefined') {
+      return document.documentElement.classList.contains('dark')
+    }
     const saved = localStorage.getItem('theme')
     if (saved) {
       return saved === 'dark'
