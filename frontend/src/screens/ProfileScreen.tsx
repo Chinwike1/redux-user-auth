@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '../app/hooks'
 import '../styles/profile.css'
 
 const ProfileScreen = () => {
-  const { userInfo } = useSelector((state) => state.auth)
+  const { userInfo } = useAppSelector((state) => state.auth)
 
   return (
     <div>

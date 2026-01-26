@@ -1,16 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import type { RootState } from '../../store'
+import type { User } from '../../../types'
 
-const baseUrl =
-  process.env.NODE_ENV !== 'production'
-    ? 'http://127.0.0.1:5000/'
-    : import.meta.env.VITE_SERVER_URL
+const baseUrl = '/'
 
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.userToken
+      const token = (getState() as RootState).auth.userToken
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
         return headers
@@ -18,7 +17,7 @@ export const authApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getUserDetails: build.query({
+    getUserDetails: build.query<User, string>({
       query: () => ({
         url: 'api/user/profile',
         method: 'GET',

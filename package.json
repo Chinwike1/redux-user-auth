@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "type": "module",
   "description": "User Authentication workflow made with the MERN stack",
-  "main": "index.js",
+  "main": "./backend/server.ts",
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
-    "client": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "install:all": "pnpm install && pnpm -C backend install && pnpm -C frontend install",
+    "build": "pnpm run build:backend && pnpm run build:frontend",
+    "build:backend": "pnpm -C backend run build",
+    "build:frontend": "pnpm -C frontend run build",
+    "start": "cd backend && npx tsx server.ts",
+    "dev": "concurrently \"pnpm run dev:server\" \"pnpm run dev:client\"",
+    "dev:server": "pnpm -C backend run dev",
+    "dev:client": "pnpm -C frontend run dev",
+    "typecheck": "pnpm run typecheck:backend && pnpm run typecheck:frontend",
+    "typecheck:backend": "pnpm -C backend run typecheck",
+    "typecheck:frontend": "pnpm -C frontend run typecheck"
   },
   "repository": {
     "type": "git",
@@ -23,8 +29,7 @@
   },
   "homepage": "https://github.com/Chinwike1/redux-user-auth#readme",
   "devDependencies": {
-    "concurrently": "^7.2.1",
-    "nodemon": "^2.0.16"
+    "concurrently": "^7.2.1"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -34,5 +39,9 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5"
-  }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.14.0"
 }

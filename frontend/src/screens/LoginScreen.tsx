@@ -1,16 +1,17 @@
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { userLogin } from '../features/auth/authActions'
 import { useEffect } from 'react'
 import Error from '../components/Error'
 import Spinner from '../components/Spinner'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import type { LoginCredentials } from '../types'
 
 const LoginScreen = () => {
-  const { loading, userInfo, error } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
+  const { loading, userInfo, error } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<LoginCredentials>()
 
   const navigate = useNavigate()
 
@@ -21,7 +22,7 @@ const LoginScreen = () => {
     }
   }, [navigate, userInfo])
 
-  const submitForm = (data) => {
+  const submitForm: SubmitHandler<LoginCredentials> = (data) => {
     dispatch(userLogin(data))
   }
 

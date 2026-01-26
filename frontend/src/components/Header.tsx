@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { useGetUserDetailsQuery } from '../app/services/auth/authService'
 import { logout, setCredentials } from '../features/auth/authSlice'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+import ThemeSwitcher from './ThemeSwitcher'
 import '../styles/header.css'
 
 const Header = () => {
-  const { userInfo } = useSelector((state) => state.auth)
-  const dispatch = useDispatch()
+  const { userInfo } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
 
   // automatically authenticate user if token is found
   const { data, isFetching } = useGetUserDetailsQuery('userDetails', {
@@ -29,6 +30,7 @@ const Header = () => {
             : "You're not logged in"}
         </span>
         <div className='cta'>
+          <ThemeSwitcher />
           {userInfo ? (
             <button className='button' onClick={() => dispatch(logout())}>
               Logout

@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import Error from '../components/Error'
 import Spinner from '../components/Spinner'
 import { registerUser } from '../features/auth/authActions'
+import { useAppDispatch, useAppSelector } from '../app/hooks'
+
+interface RegisterFormData {
+  firstName: string
+  email: string
+  password: string
+  confirmPassword: string
+}
 
 const RegisterScreen = () => {
-  const [customError, setCustomError] = useState(null)
+  const [customError, setCustomError] = useState<string | null>(null)
 
-  const { loading, userInfo, error, success } = useSelector(
-    (state) => state.auth
-  )
-  const dispatch = useDispatch()
+  const { loading, userInfo, error, success } = useAppSelector((state) => state.auth)
+  const dispatch = useAppDispatch()
 
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<RegisterFormData>()
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -24,16 +29,16 @@ const RegisterScreen = () => {
     if (success) navigate('/login')
   }, [navigate, userInfo, success])
 
-  const submitForm = (data) => {
+  const submitForm: SubmitHandler<RegisterFormData> = (data) => {
     // check if passwords match
     if (data.password !== data.confirmPassword) {
       setCustomError('Password mismatch')
       return
     }
     // transform email string to lowercase to avoid case sensitivity issues in login
-    data.email = data.email.toLowerCase()
+    const email = data.email.toLowerCase()
 
-    dispatch(registerUser(data))
+    dispatch(registerUser({ firstName: data.firstName, email, password: data.password }))
   }
 
   return (

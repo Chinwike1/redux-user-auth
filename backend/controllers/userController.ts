@@ -1,8 +1,11 @@
+import { Request, Response } from 'express'
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
+import logger from '../config/logger.js'
+import { RegisterBody, LoginBody } from '../types/index.js'
 
-const registerUser = asyncHandler(async (req, res) => {
+const registerUser = asyncHandler(async (req: Request<{}, {}, RegisterBody>, res: Response): Promise<void> => {
   const { firstName, email, password } = req.body
 
   // check if email exists in db
@@ -17,6 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({ firstName, email, password })
 
   if (user) {
+    logger.info(`${email} registered at ${new Date().toISOString()}`)
     res.status(201).json({
       _id: user._id,
       firstName: user.firstName,
@@ -28,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = asyncHandler(async (req: Request<{}, {}, LoginBody>, res: Response): Promise<void> => {
   const { email, password } = req.body
 
   // check if user email exists in db
@@ -36,11 +40,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
   // return user obj if their password matches
   if (user && (await user.matchPassword(password))) {
+    logger.info(`${email} signed in at ${new Date().toISOString()}`)
     res.json({
       _id: user._id,
       firstName: user.firstName,
       email: user.email,
-      userToken: generateToken(user._id),
+      userToken: generateToken(user._id.toString()),
     })
   } else {
     res.status(401)
@@ -48,9 +53,9 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 })
 
-const getUserProfile = asyncHandler(async (req, res) => {
+const getUserProfile = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   // req.user was set in authMiddleware.js
-  const user = await User.findById(req.user._id)
+  const user = await User.findById(req.user!._id)
 
   if (user) {
     res.json({

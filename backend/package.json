@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "User Authentication workflow made with the MERN stack",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server"
+    "build": "tsc",
+    "start": "node ../dist/backend/server.js",
+    "dev": "tsx watch server.ts",
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
@@ -20,7 +22,14 @@
   },
   "homepage": "https://github.com/Chinwike1/redux-user-auth#readme",
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-serve-static-core": "^5.1.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.0.10",
+    "@types/qs": "^6.14.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -30,6 +39,7 @@
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.5"
+    "mongoose": "^6.3.5",
+    "winston": "^3.19.0"
   }
 }

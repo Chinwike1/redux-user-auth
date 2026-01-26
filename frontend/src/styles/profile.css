@@ -1,5 +1,4 @@
 figure {
-  /* border: 1px solid black; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +7,7 @@ figure {
   font-size: 3.5rem;
   color: white;
   background: rgb(22, 184, 243);
-    background: linear-gradient(149deg, rgba(22, 184, 243, 1) 0%, rgba(108, 231, 185, 1) 65%);
+  background: linear-gradient(149deg, rgba(22, 184, 243, 1) 0%, rgba(108, 231, 185, 1) 65%);
   border-radius: 50%;
   margin: 2rem auto;
 }
@@ -21,8 +20,17 @@ div.unauthorized {
   text-align: center;
 }
 
-div.unauthorized span{
+div.unauthorized span {
   display: inline-block;
+}
+
+div.unauthorized a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+div.unauthorized a:hover {
+  text-decoration: underline;
 }
 
 div.unauthorized h1 {
