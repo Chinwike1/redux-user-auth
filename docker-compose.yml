@@ -13,5 +13,9 @@ services:
     ports:
       - '5000:5000'
     volumes:
-      - ../files/logs:/app/logs
+      - auth_logs:/app/logs
     restart: unless-stopped
+
+volumes:
+  auth_logs:
+
