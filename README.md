@@ -1,3 +1,5 @@
+
+
 # User Authentication with Redux Toolkit
 
 Authentication workflow built with the MERN stack, Redux Toolkit & TypeScript. [Project demo here](https://redux-user-auth.netlify.app/)
@@ -32,6 +34,8 @@ Follow this guide on "[Getting started with MongoDB Atlas](https://www.mongodb.c
 ## Environment Variables
 
 Environment variables are shown in `.env.example` files.
+
+The backend requires `MONGO_URI` and `JWT_SECRET` for database connection and JWT signing.
 
 ## Install Dependencies
 
